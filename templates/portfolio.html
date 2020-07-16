@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Stocks list</h1>
+
+    <table style= "width:100%">
+        <tr>
+            <th> Name </th>
+            <th> Ticker </th>
+            <th> Price </th>
+            <th> Quantity </th>
+        </tr>
+        {% for stock in stocks %}
+        <tr>
+            <td> <a href="{{stock.ticker}}">  {{stock.name}}</a> </td>
+            <td> {{stock.ticker}} </td>
+            <td>  {{stock.price}}</td>
+            <td> {{stock.quantity}} </td>
+            <td>
+                <a href="buy/{{stock.ticker}}">Buy</a>
+                <a href="sell/{{stock.ticker}}">Sell</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+<h1></h1>
+<h4>Add new stock:</h4>
+    <form action="/" method="POST">
+        <input type="text" name="name"  placeholder="Company name">
+        <input type="text" name="ticker" placeholder="Ticker" size="8">
+        <input type="text" name="price" placeholder="Purchased at price" size="14">
+        <input type="number" name="quantity" size="8" placeholder="Quantity">
+        <input type="submit" value="Add stock">
+
+
+    </form>
+
+{% endblock content %}
